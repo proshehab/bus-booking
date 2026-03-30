@@ -8,25 +8,26 @@
     <meta content="Codescandy" name="author">
     <title>Sign In | Dasher - Responsive Bootstrap 5 Admin Dashboard</title>
     <!-- Favicon icon-->
-    <link rel="apple-touch-icon" sizes="57x57" href="../../assets/images/favicon/apple-icon-57x57.png" />
-    <link rel="apple-touch-icon" sizes="60x60" href="../../assets/images/favicon/apple-icon-60x60.png" />
-    <link rel="apple-touch-icon" sizes="72x72" href="../../assets/images/favicon/apple-icon-72x72.png" />
-    <link rel="apple-touch-icon" sizes="76x76" href="../../assets/images/favicon/apple-icon-76x76.png" />
-    <link rel="apple-touch-icon" sizes="114x114" href="../../assets/images/favicon/apple-icon-114x114.png" />
-    <link rel="apple-touch-icon" sizes="120x120" href="../../assets/images/favicon/apple-icon-120x120.png" />
-    <link rel="apple-touch-icon" sizes="144x144" href="../../assets/images/favicon/apple-icon-144x144.png" />
-    <link rel="apple-touch-icon" sizes="152x152" href="../../assets/images/favicon/apple-icon-152x152.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/images/favicon/apple-icon-180x180.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="../../assets/images/favicon/android-icon-192x192.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/images/favicon/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="96x96" href="../../assets/images/favicon/favicon-96x96.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('admin') }}/images/favicon/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('admin') }}/images/favicon/apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('admin') }}/images/favicon/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('admin') }}/images/favicon/apple-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('admin') }}/images/favicon/apple-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('admin') }}/images/favicon/apple-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('admin') }}/images/favicon/apple-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('admin') }}/images/favicon/apple-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('admin') }}/images/favicon/apple-icon-180x180.png" />
+    <link rel="icon" type="image/png" sizes="192x192"
+        href="{{ asset('admin') }}/images/favicon/android-icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('admin') }}/images/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('admin') }}/images/favicon/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('admin') }}/images/favicon/favicon-16x16.png" />
 
     <meta name="msapplication-TileColor" content="#ffffff" />
-    <meta name="msapplication-TileImage" content="../../assets/images/favicon/ms-icon-144x144.png" />
+    <meta name="msapplication-TileImage" content="{{ asset('admin') }}/images/favicon/ms-icon-144x144.png" />
     <meta name="theme-color" content="#ffffff" />
     <!-- Color modes -->
-    <script src="../../assets/js/vendors/color-modes.js"></script>
+    <script src="{{ asset('admin') }}/js/vendors/color-modes.js"></script>
     <script>
         if (localStorage.getItem('sidebarExpanded') === 'false') {
     document.documentElement.classList.add('collapsed');
@@ -41,11 +42,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&display=swap" />
-    <link rel="stylesheet" href="../../assets/libs/simplebar/dist/simplebar.min.css" />
-    <link rel="stylesheet" href="../../assets/libs/@tabler/icons-webfont/tabler-icons.min.css" />
+    <link rel="stylesheet" href="{{ asset('admin') }}/libs/simplebar/dist/simplebar.min.css" />
+    <link rel="stylesheet" href="{{ asset('admin') }}/libs/@tabler/icons-webfont/tabler-icons.min.css" />
 
     <!-- Theme CSS -->
-    <link rel="stylesheet" href="../../assets/css/theme.min.css">
+    <link rel="stylesheet" href="{{ asset('admin') }}/css/theme.css">
 
 </head>
 
@@ -74,24 +75,31 @@
                     <div class="col-xl-5 col-lg-6 col-md-8 col-12">
                         <div class="card card-lg mb-6">
                             <div class="card-body p-6">
-                                <form class="needs-validation mb-6" novalidate>
-                                    <div class="mb-3">
+
+                                <form class="needs-validation mb-6" novalidate method="POST"
+                                    action="{{ route('authLoin') }}">
+                                    @csrf
+
+                                    <div class=" mb-3">
                                         <label for="signinEmailInput" class="form-label">
                                             Email
                                             <span class="text-danger">*</span>
                                         </label>
-                                        <input type="email" class="form-control" id="signinEmailInput" required />
+                                        <input type="email" name="email" class="form-control" id="signinEmailInput"
+                                            required />
                                         <div class="invalid-feedback">Please enter email.</div>
                                     </div>
+
                                     <div class="mb-3">
                                         <label for="formSignUpPassword" class="form-label">Password</label>
                                         <div class="password-field position-relative">
-                                            <input type="password" class="form-control fakePassword"
+                                            <input type="password" name="password" class="form-control fakePassword"
                                                 id="formSignUpPassword" required />
                                             <span><i class="ti ti-eye-off passwordToggler"></i></span>
                                             <div class="invalid-feedback">Please enter password.</div>
                                         </div>
                                     </div>
+
 
                                     <div class="mb-4 d-flex align-items-center justify-content-between">
                                         <div class="form-check">
@@ -173,11 +181,11 @@
     </main>
 
     <!-- Libs JS -->
-    <script src="../../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../assets/libs/simplebar/dist/simplebar.min.js"></script>
+    <script src="{{ asset('admin') }}/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('admin') }}/libs/simplebar/dist/simplebar.min.js"></script>
 
     <!-- Theme JS -->
-    <script src="../../assets/js/theme.min.js"></script>
+    <script src="{{ asset('admin') }}/js/theme.min.js"></script>
 
     <!DOCTYPE html>
     <html lang="en">
@@ -194,7 +202,7 @@
 
     </html>
 
-    <script src="../../assets/js/vendors/password.js"></script>
+    <script src="{{ asset('admin') }}/js/vendors/password.js"></script>
 </body>
 
 </html>
